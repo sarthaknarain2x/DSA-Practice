@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    long long sumMatrix(long long n, long long q) {
+        // code here
+        
+        if(q<=n){
+            return (q-1);
+        }
+        else{
+            long long ans= (n*2)-(q-1);
+            if(ans<0){
+                ans =0;
+            }
+            return ans;
+        }
+    }
+};
