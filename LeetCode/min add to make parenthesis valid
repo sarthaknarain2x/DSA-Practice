@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        char ch; int c=0;
+        stack<char> stk;
+        if(s.length()==0){
+            return true;
+        }
+       
+        for(int i=0; i<s.length();i++){
+            ch = s[i];
+
+            if(ch=='('){
+                stk.push(ch);
+            }
+            else{
+                if(!stk.empty() && stk.top() == '(')
+                    stk.pop();
+                else
+                    stk.push(ch);
+            }
+        }
+        int a=0, b=0;
+        while(!stk.empty()){
+            if(stk.top()=='(')
+                a++;
+            else
+                b++;
+            stk.pop();
+        }
+        return (a+b);
+    }
+};
