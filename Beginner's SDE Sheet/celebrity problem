@@ -1,0 +1,57 @@
+class Solution 
+{
+    public:
+    //Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here
+        int a,b;
+        stack<int> s;
+        for(int i=0; i<n; i++){
+            s.push(i);
+        }
+        while(s.size() > 1){
+            a = s.top();
+            s.pop();
+            b = s.top();
+            s.pop();
+            
+           if(M[a][b]==1)
+                s.push(b);
+            else
+                s.push(a);
+        }
+        int ans = s.top();
+        
+        //check row of ans
+        int countOfZeros = 0;
+        bool rowResult = false;
+        for(int i=0; i<n; i++){
+            if(M[ans][i]==0){
+                countOfZeros++;
+            }
+        }
+        if(countOfZeros == n){
+            rowResult = true;
+        }
+        
+        // check column of ans
+        int countOfOnes = 0;
+        bool colResult = false;
+        for(int i=0; i<n; i++){
+            if(M[i][ans]==1){
+                countOfOnes++;
+            }
+        }
+        if(countOfOnes == (n-1)){ // ignore diagonal
+            colResult = true;
+        }
+            
+        if(rowResult == true && colResult == true){
+            return ans;
+        }
+        else{
+            return -1;
+        }
+    }
+};
