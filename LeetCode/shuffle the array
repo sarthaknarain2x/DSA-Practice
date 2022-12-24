@@ -1,0 +1,18 @@
+class Solution {
+    public int[] shuffle(int[] nums, int n) {
+        int size = nums.length;
+        
+        int[] result = new int[size];
+        int i = 0, j = n;
+        int counter = 0;
+        while(counter < size){
+            if(counter % 2 == 0){
+                result[counter] = nums[i++];
+            } else {
+                result[counter] = nums[j++];
+            }
+            counter++;
+        }
+        return result;
+    }
+}
