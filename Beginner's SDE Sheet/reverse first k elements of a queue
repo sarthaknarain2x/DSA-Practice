@@ -1,0 +1,22 @@
+queue<int> modifyQueue(queue<int> q, int k) {
+    // add code here.
+    stack <int> s;
+    //insert first k ele into stack s
+    for(int i=0; i<k; i++){
+        int x = q.front();
+        q.pop();
+        s.push(x);
+    }
+    //now put the stack ele back into queue (gets pushed in rev order)
+    while(!s.empty()){
+        q.push(s.top());
+        s.pop();
+    }
+    // now push the front (n-k) to the back of the queue & automatically piche wale elements aage aajayege
+    for(int i= (q.size()-k); i>0; i--){
+        int x = q.front();
+        q.pop();
+        q.push(x);
+    }
+    return q;
+}
