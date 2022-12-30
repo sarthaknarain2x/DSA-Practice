@@ -1,4 +1,3 @@
-// implemented using stacks
 queue<int> rev(queue<int> q)
 {
     // add code here.
