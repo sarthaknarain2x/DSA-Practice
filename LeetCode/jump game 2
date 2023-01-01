@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        int curr = 0, far = 0, jump = 0;
+        for(int i=0; i<nums.size()-1; i++) {
+            far = max(far, i + nums[i]);
+            if(i==curr){
+                jump++;
+                curr = far;
+            }
+        }
+        if(curr<nums.size()-1)
+            return -1;
+        return jump;
+
+    }
+};
