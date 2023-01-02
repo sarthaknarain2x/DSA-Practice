@@ -1,0 +1,33 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int c=0, s=0, chk=0;
+        char ch;
+        boolean ans = false;
+        for(int i=0; i<word.length(); i++) {
+            ch = word.charAt(i);
+            if(ch>=65 && ch<=91)
+                c++;
+        }
+        for(int i=0; i<word.length(); i++) {
+            ch = word.charAt(i);
+            if(ch>=97 && ch<=122)
+                s++;
+        }
+        if(c==word.length()){  
+            ans = true;
+        }
+        if(s==word.length()){
+            ans= true;
+        }
+        for(int i=1; i<word.length(); i++) {
+            ch = word.charAt(i);
+            if(ch>=97 && ch<=122){
+                chk++;
+            }
+        }
+        if(word.charAt(0)>=65 && word.charAt(0)<=91 && chk==word.length()-1){
+            ans = true;
+        }
+        return ans;
+    }
+}
