@@ -1,0 +1,26 @@
+class Solution {
+public:
+    double solve(double x, int n) {
+        if(x==1 || n==0) {
+            return 1.0;
+        }
+        if(n==1) 
+            return x;
+        
+        double ans = solve(x, n/2);
+
+        if(n%2==0) {
+            return ans * ans;
+        }
+        else{
+            if(n>0)
+                return x*ans*ans;
+            else
+                return (1/x) * ans*ans;
+        }
+    }
+    double myPow(double x, int n) {
+        double ans = solve(x, n);
+        return ans;
+    }
+};
