@@ -1,14 +1,15 @@
 class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> visited;
-        for (int i=0; i<nums.size(); i++) {
-            int b = nums[i];
-            int a = target - b;
-            if (visited.count(a))
-                return {visited[a], i};
-            visited[b] = i;
+    public int[] twoSum(int[] nums, int target) {
+        int[] ans= new int[2];
+        Map <Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i=0; i<nums.length; i++) {
+            if(map.containsKey(target - nums[i])) {
+                ans[0] = i;
+                ans[1] = map.get(target-nums[i]);
+                return ans;
+            }
+            map.put(nums[i], i);
         }
-        return {};
-        }
-    };
+        return ans; 
+    }
+}
