@@ -1,3 +1,4 @@
+//CPP Code
 class Solution {
 public:
     bool findSubarrays(vector<int>& nums) {
@@ -13,3 +14,19 @@ public:
         return false;
     }
 };
+
+// Java Code
+class Solution {
+    public boolean findSubarrays(int[] nums) {
+        int sum, i;
+        Map <Integer, Integer> mp = new HashMap <>();  
+        for(i=0; i<nums.length-1;i++) {
+            sum = nums[i] + nums[i+1];
+            if(mp.containsKey(sum))
+                return true;
+            else
+                mp.put(sum, i);
+        }
+        return false;
+    }
+}
