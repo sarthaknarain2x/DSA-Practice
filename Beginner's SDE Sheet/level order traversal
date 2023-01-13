@@ -1,0 +1,26 @@
+// TC: O(N) / SC: O(N)
+class Solution
+{
+    public:
+    //Function to return the level order traversal of a tree.
+    vector<int> levelOrder(Node* node)
+    {
+      //Your code here
+      vector<int> ans;
+      queue<Node*> q;
+      q.push(node);
+      
+      while(!q.empty()){
+            Node* temp = q.front(); // front of queue
+              q.pop(); // pop the element inserted
+              ans.push_back(temp->data); // vector mein temp ka data daal do
+              if(temp->left){   // if temp ka left is not null
+                  q.push(temp->left); //queue mein push krdo left node
+              }
+              if(temp->right){  // if temp ka right is not null
+                  q.push(temp->right); // queue mein push the right node
+              }
+      }
+      return ans;
+    }
+};
