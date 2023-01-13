@@ -1,0 +1,24 @@
+// similar to level order traversal but we need to push right subtree first before the left subtree. Reverse the ans vector as well
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+    vector<int> ans;
+    queue<Node*> q;
+    q.push(root);
+    
+    while(!q.empty()) {
+        root = q.front();
+        q.pop();
+        // st.push(root);
+        ans.push_back(root->data);
+        //pehle right 
+        if(root->right) 
+            q.push(root->right);
+        //then left
+        if(root->left)
+            q.push(root->left);
+    }
+    //reverse the vector
+    reverse(ans.begin(), ans.end());
+    return ans;
+    }
