@@ -1,3 +1,5 @@
+// O(N^2) approach ->
+
 class Solution {
   public:
     int height(Node* root) {
@@ -18,5 +20,37 @@ class Solution {
         int b = diameter(root->right);
         int c = height(root->left) + height(root->right) +1;
         return(max(a, max(b,c)));
+    }
+};
+
+// O(N) Solution using pair. 
+class Solution {
+    private:
+    pair <int, int> soln(Node* root) {   // diameter & height is passed as a pair
+        if(root==NULL) {
+            pair<int, int> p = make_pair(0,0);
+            return p;
+        }
+        
+        pair <int, int> left = soln(root->left);
+        pair <int, int> right = soln(root->right);
+        
+        int opt1 = left.first;
+        int opt2 = right.first;
+        int opt3 = left.second + right.second + 1;
+        
+        pair<int, int> ans;
+        ans.first = max(opt1, max(opt2, opt3));  // diameter
+        ans.second = max(left.second, right.second) + 1;  // height
+        
+        return ans;
+        
+    }
+  public:
+    // Function to return the diameter of a Binary Tree.
+    int diameter(Node* root) {
+        // Your code here
+        return soln(root).first;
+        
     }
 };
