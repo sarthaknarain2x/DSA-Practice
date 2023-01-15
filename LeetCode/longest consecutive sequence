@@ -1,0 +1,25 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        Set <Integer> hs = new HashSet<Integer>();
+        for(int num : nums) { 
+            hs.add(num); // insert every number in hashset
+        }
+        int longestStreak = 0;
+        for(int num: nums) {
+            // check if the hashset doesn't contain the num prev to it
+            if(!hs.contains(num-1)) {
+                int currNum = num;  //we'll operate on this curr num now 
+                int currStreak = 1; //make streak as 1
+                
+                // if hs contains the next consecutive number 
+                while(hs.contains(currNum+1)) {
+                    currNum = currNum+1; // increment the curr num 
+                    currStreak = currStreak+1; //increase the streak
+                }
+                // max of curr streak is the ans
+                longestStreak = Math.max(longestStreak, currStreak);
+            }
+        }
+        return longestStreak; 
+    }
+}
