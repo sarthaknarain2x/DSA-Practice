@@ -95,40 +95,46 @@ struct Node
 class Solution
 {
     public:
-    pair<bool, int> isSumTreeFast(Node* root) {
-        if(root==NULL) {
-            pair<bool, int> p = make_pair(true,0);
-            return p;
-        }
+    bool isLeaf(Node* root) {
+        if(root==NULL)
+            return false;
         
-        if(root->left == NULL && root->right == NULL) {
-            pair<bool, int> p = make_pair(true, root->data);
-            return p;
-        }
-        
-        pair<bool, int> leftAns = isSumTreeFast(root->left);
-        pair<bool, int> rightAns = isSumTreeFast(root->right);
-        
-        bool left = leftAns.first;
-        bool right = rightAns.first;
-        
-        bool condn = root->data == leftAns.second + rightAns.second;
-        
-        pair<bool, int> ans;
-        
-        if(left && right && condn) {
-            ans.first = true;
-            ans.second = 2*root->data; // 2* root->data because root->data mein we add leftsum & rightSum which is equivalent to root->data 
-        }
-        else{
-            ans.first = false;
-        }
-        return ans;
+        if(root->left == NULL && root->right == NULL) 
+            return true;
+    
+        return false;
     }
     bool isSumTree(Node* root)
     {
         // Your code here
-        return isSumTreeFast(root).first;
+        int ls, rs;
+        if(root==NULL || isLeaf(root))
+            return true;
+        
+        if(isSumTree(root->left) && isSumTree(root->right)) {
+            // left subtree sum
+            if(root->left==NULL) 
+                ls = 0;
+                
+            else if(isLeaf(root->left))
+                ls = root->left->data;
+                
+            else
+                ls = 2*(root->left->data);
+                
+            // right subtree sum
+            if(root->right==NULL)
+                rs=0;
+            
+            else if(isLeaf(root->right))
+                rs = root->right->data;
+                
+            else
+                rs = 2*(root->right->data);
+                
+            return (root->data == ls+rs);
+        }
+        return false;
     }
 };
 
