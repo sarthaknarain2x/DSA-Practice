@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ans(numRows);
+        for(int i=0; i<numRows; i++) {
+            ans[i].resize(i+1); // no of rows = no of cols. hence resizing vector
+            ans[i][0] = ans[i][i] = 1;//first & last element are 1 so initialize it with 1
+            // traverse from first row to second last row
+            for(int j=1; j<i; j++) {
+                ans[i][j] = ans[i-1][j-1] + ans[i-1][j];
+            }
+        }
+        return ans;
+    }
+};
