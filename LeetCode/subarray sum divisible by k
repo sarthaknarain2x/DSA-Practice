@@ -1,0 +1,24 @@
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        int ans=0, rem=0, sum=0;
+        HashMap<Integer, Integer> map = new HashMap<>(); // map of rem and its freq
+        map.put(0,1); /* put 0's freq as 1. its for when we have a subarray sum divisible by k for first contiguous elements starting from first element 
+like example : 5 2 ; k = 7
+for this answer should be 1 but if u do not add 0,1 initially you will get 0 */ 
+        for(int i=0; i<nums.length; i++) {
+            sum+=nums[i];
+            rem = sum%k;
+            if(rem<0) // if rem <0, then add k to it to make it positive
+                rem+=k; //(kn-y) -> (kn-y -k + k) -> k(n-1)+(k-y) -> [kn' + k-y]
+            // if map already had any rem equal to the one found 
+            if(map.containsKey(rem)){
+                ans += map.get(rem); // then, get the freq of that rem and add that freq to ans
+                map.put(rem, map.get(rem)+1); // increase the freq by 1
+            }
+            else{
+                map.put(rem, 1); // if rem not present in map, put it in map with freq 1
+            }
+        }
+        return ans;
+    }
+}
