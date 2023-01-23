@@ -1,0 +1,62 @@
+//{ Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+/*You are required to complete this function*/
+
+class Solution{
+    public:
+    int maxLen(vector<int>&A, int n)
+    {   
+        // Your code here
+        unordered_map<int, int> m;
+        int sum=0, maxi=0;
+        for(int i=0; i<n;i++) {
+            sum+=A[i];
+            if(sum==0) {
+                maxi = i+1;
+            }
+            else{
+                // check if sum exists in map
+                if(m.find(sum) != m.end()){
+//subtract curr index with the index where we got that sum. this will give us the subarray length
+// comapre with maxi. whoever is greater is our max subarray length
+                    maxi = max(maxi, i-m[sum]); 
+                }
+                else{
+                    m[sum] = i; // if sum doesn't exists, insert that sum into the map
+                }
+            }
+        }
+        return maxi;
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int m;
+        cin>>m;
+        vector<int> array1(m);
+        for (int i = 0; i < m; ++i){
+            cin>>array1[i];
+        }
+        Solution ob;
+        cout<<ob.maxLen(array1,m)<<endl;
+    }
+    return 0; 
+}
+
+
+
+// } Driver Code Ends
