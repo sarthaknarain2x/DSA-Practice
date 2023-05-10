@@ -10,7 +10,7 @@ public:
                 balance = 0;
             }
         }
-        if(( balance + deficit) >=0 ) 
+        if(( balance + deficit) >=0) 
             return start;
         else
             return -1;  
