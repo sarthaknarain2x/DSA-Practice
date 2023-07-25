@@ -15,3 +15,22 @@ class Solution {
         return str.toString();
     }
 }
+
+// CPP Code for the same->
+
+// class Solution {
+// public:
+//     string addSpaces(string s, vector<int>& spaces) {
+//         string str = "";
+//         int len = s.length();
+//         int i, j=0;
+//         for(i=0; i<len; i++) {
+//             if(j<spaces.size() && i==spaces[j]) {
+//                 str += ' ';
+//                 j++;
+//             }
+//             str += s[i];
+//         }
+//         return str;
+//     }
+// };
