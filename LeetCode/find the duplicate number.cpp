@@ -1,4 +1,20 @@
-// better binary search solution
+// marking the visited (best TC)
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int ind;
+        for(int i=0; i<nums.size(); i++) {
+            ind = abs(nums[i]);
+            if(nums[ind] < 0) {
+                return ind;
+            }
+            nums[ind] = -1*nums[ind];
+        }
+        return -1;
+    }
+};
+
+// binary search solution
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
